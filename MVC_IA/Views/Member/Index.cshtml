@@ -1,0 +1,104 @@
+﻿@model MVC_IA.Models.Member
+@{
+    ViewBag.Title = "Index";
+}
+
+<div id="banner-area" class="banner-area" style="background-image:url(../Content/Images/banner-bg.jpg)">
+    <!-- Subpage title start -->
+    <div class="banner-text text-right">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <ul class="breadcrumb">
+                        <li>首頁</li>
+                        <li>會員專區</li>
+                        <li><a href="#"> 會員登入</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Subpage title end -->
+</div>
+<!-- Banner area end -->
+<section id="main-container" class="main-container">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                <div class="sidebar sidebar-right">
+                    <div class="widget">
+                        <h2 class="widget-title"><i class="fa fa-folder-open-o">&nbsp;</i>會員專區</h2>
+                        <ul class="arrow nav nav-tabs nav-stacked">
+                            <li class="active"><a href="~/Member/LogIn.cshtml">會員註冊</a></li>
+                        </ul>
+                    </div>
+                    <!-- Categories end -->
+                </div>
+                <!-- Sidebar end -->
+            </div>
+            <!-- Sidebar Col end -->
+            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+
+                <h2 class="page-title">會員登入</h2>
+                <hr class="botmargin-min">
+                <!-- 內容開始 -->
+                @using (Html.BeginForm("Index", "Member", FormMethod.Post, new { @class = "form-horizontal comments-form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <h3 class="title-normal">請輸入您的帳號及密碼</h3>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">帳 號：</label>
+                        <div class="col-sm-8">
+                            @Html.EditorFor(model => model.Account, new { htmlAttributes = new { @class = "form-control", placeholder = "請輸入帳號" } })
+                            @Html.ValidationMessageFor(model => model.Account, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-sm-2">
+                            <span class="alertred"><i class="fa fa-exclamation-circle"></i> @(ViewBag.email != true ? "" : "帳號錯誤")</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">密 碼：</label>
+                        <div class="col-sm-8">
+                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", placeholder = "請輸入密碼", Type = "password" } })
+                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-sm-2">
+                            <span class="alertred"><i class="fa fa-exclamation-circle"></i>@(ViewBag.password != true ? "" : "密碼錯誤")</span>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button class="btn btn-primary solid blank" type="submit">Login</button>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <div class="text-left">
+                        <a href="#">忘記密碼？</a> &nbsp;&nbsp;/&nbsp;&nbsp; <a href="~/Member/Create">尚未註冊</a>
+                    </div>
+
+                }
+
+
+                <div class="tags-area clearfix">
+                    <div class="share-items pull-right">
+                        <ul class="post-social-icons unstyled">
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Content Col end -->
+            <!-- 內容結束 -->
+        </div>
+        <!-- Main row end -->
+    </div>
+    <!-- Conatiner end -->
+</section>
+

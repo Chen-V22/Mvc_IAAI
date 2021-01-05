@@ -1,0 +1,137 @@
+﻿@using System.CodeDom
+@model MVC_IA.Models.ContactUs
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+
+<div id="banner-area" class="banner-area" style="background-image: url(../Content/Images/banner-bg.jpg)">
+    <!-- Subpage title start -->
+    <div class="banner-text text-right">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <ul class="breadcrumb">
+                        <li>首頁</li>
+                        <li>聯絡我們</li>
+                        <li><a href="#"> 聯絡我們</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Subpage title end -->
+</div>
+<!-- Banner area end -->
+<section id="main-container" class="main-container">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                <div class="sidebar sidebar-right">
+                    <div class="widget">
+                        <h2 class="widget-title"><i class="fa fa-folder-open-o">&nbsp;</i>聯絡我們</h2>
+                        <ul class="arrow nav nav-tabs nav-stacked">
+                            <li class="active"><a href="#">聯絡我們</a></li>
+                        </ul>
+                    </div>
+                    <!-- Categories end -->
+                </div>
+                <!-- Sidebar end -->
+            </div>
+            <!-- Sidebar Col end -->
+            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                <h2 class="page-title">聯絡我們 </h2>
+                <hr class="botmargin-min">
+                <!-- 內容開始 -->
+                @using (Html.BeginForm("Index", "ContactUs", FormMethod.Post, new { @class = "form-horizontal" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "col-sm-2 control-label" })
+                        <div class="col-sm-7">
+                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", placeholder = "請輸入姓名" } })
+                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Gender, htmlAttributes: new { @class = "col-sm-2 control-label" })
+                        <div class="col-sm-7">
+                            @Html.EnumDropDownListFor(model => model.Gender, new { htmlAttributes = new { @class = "form-control", placeholder = "請輸入性別" } })
+                            @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "col-sm-2 control-label" })
+                        <div class="col-sm-7">
+                            @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control", placeholder = "請輸入聯絡電話" } })
+                            @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "col-sm-2 control-label" })
+                        <div class="col-sm-7">
+                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "請輸入E-mail" } })
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "col-sm-2 control-label" })
+                        <div class="col-sm-7">
+                            @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control", placeholder = "請輸入標題" } })
+                            @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Content, htmlAttributes: new { @class = "col-sm-2 control-label" })
+                        <div class="col-sm-7">
+                            @Html.TextAreaFor(model => model.Content, new { htmlAttributes = new { @class = "form-control", cols = 120, rows = 30, placeholder = "請輸入內容" } })
+                            @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button class="btn btn-primary solid blank" type="submit">送 出</button>
+                        </div>
+                    </div>
+                    if (TempData["message"] != null)
+                    {
+                        <script type="text/javascript">
+                            var message = @Html.Raw(Json.Encode(TempData["message"]));
+                            alert(message);
+                        </script>
+                    }
+                }
+                <div class="tags-area clearfix">
+                    <div class="share-items pull-right">
+                        <ul class="post-social-icons unstyled">
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+                <!-- Content Col end -->
+                <!-- 內容結束 -->
+            </div>
+            <!-- Main row end -->
+        </div>
+        <!-- Conatiner end -->
+    </section>
+
+
