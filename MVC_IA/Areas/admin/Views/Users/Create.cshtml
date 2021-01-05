@@ -1,0 +1,96 @@
+﻿@model MVC_IA.Models.User
+
+
+@{
+    ViewBag.Title = "Create";
+}
+
+
+<h2>新增</h2>
+
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>管理員帳號</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Photo, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input type="file" name="photo" required="" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Authority, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Authority, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Authority, "", new { @class = "text-danger" })
+            <div class="treeview">
+
+            </div>
+        </div>
+    </div>
+    <script src="~/Scripts/tree.min.js"></script>
+    <script>
+    // prettier-ignore
+    let data =@Html.Raw(ViewBag.data);
+
+    let tree = new Tree('.treeview', {
+        data: [{ id: '-1', text: 'root', children: data }],
+        closeDepth: 3,
+        loaded: function () {
+            this.values = ['0-0-0', '0-1-1'];
+            console.log(this.selectedNodes);
+            console.log(this.values);
+            this.disables = ['0-0-0', '0-0-1', '0-0-2'];
+        },
+        onChange: function () {
+            console.log(this.values);
+            $("#Authority").val(this.values);
+        }
+    })</script>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="送出" class="btn btn-info" />
+            <a href="@Url.Action("Index","Users",new {area="admin"})" style="margin: 0 0 0 5px" class="btn btn-danger">返回</a>
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @*@Html.ActionLink("Back to List", "Index")*@
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

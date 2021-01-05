@@ -1,0 +1,13 @@
+﻿@using MVC_IA.Models
+@using Newtonsoft.Json
+@model MVC_IA.Models.User
+
+
+@{
+    ViewBag.Title = "index";
+    string strUserData = ((FormsIdentity)(HttpContext.Current.User.Identity)).Ticket.UserData;
+    User data = JsonConvert.DeserializeObject<User>(strUserData);
+}
+
+<h2>歡迎！<span style="color: darkorchid;font-family: monospace">@data.Name</span></h2>
+

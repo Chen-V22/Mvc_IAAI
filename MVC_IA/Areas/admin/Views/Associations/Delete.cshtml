@@ -1,0 +1,73 @@
+﻿@model MVC_IA.Models.Association
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/admin/Views/Shared/_BackLayout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Association</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PageList)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PageList)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Content)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Content)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Clicks)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Clicks)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Announcer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Announcer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UpDater)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UpDater)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

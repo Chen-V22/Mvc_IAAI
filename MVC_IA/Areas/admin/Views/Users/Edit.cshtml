@@ -1,0 +1,101 @@
+﻿@model MVC_IA.Models.User
+<script src="~/Scripts/tree.min.js"></script>
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>User</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Photo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" id="photo" name="photo" />
+                <img src="~/UpFile/Images/s@(Model.Photo)" />
+                @Html.HiddenFor(model => model.Photo)
+            </div>
+        </div>
+
+        @Html.HiddenFor(model => model.Date)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input class="form-control text-box single-line password" data-val="true" data-val-length="密碼 長度至少必須為 4 個字元。" data-val-length-max="100" data-val-length-min="4" id="passwordNew" name="passwordNew" type="password">
+                (不修改請保持空白)
+                @Html.HiddenFor(model => model.Password)
+            </div>
+        </div>
+
+        @Html.HiddenFor(Model => Model.PasswordSalt)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Authority, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Authority, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Authority, "", new { @class = "text-danger" })
+                <div class="treeview">
+
+                </div>
+            </div>
+        </div>
+
+        <script>
+    let data =@Html.Raw(ViewBag.data);
+
+    let tree = new Tree('.treeview', {
+        data: [{ id: '-1', text: 'root', children: data }],
+    closeDepth: 3,
+    loaded: function () {
+    this.values = [@Html.Raw("'"+Model.Authority.Replace(",","','")+"'")];
+    console.log(this.selectedNodes);
+    console.log(this.values);
+    this.disables = ['0-0-0', '0-0-1', '0-0-2'];
+    },
+    onChange: function () {
+    console.log(this.values);
+    $("#Authority").val(this.values);
+    }
+    })</script>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

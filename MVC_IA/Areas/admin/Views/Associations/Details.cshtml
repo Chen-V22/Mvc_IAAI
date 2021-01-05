@@ -1,0 +1,67 @@
+﻿@model MVC_IA.Models.Association
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/admin/Views/Shared/_BackLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Association</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PageList)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PageList)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Content)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Content)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Clicks)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Clicks)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Announcer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Announcer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UpDater)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UpDater)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

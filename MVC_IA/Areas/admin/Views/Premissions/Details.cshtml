@@ -1,0 +1,50 @@
+﻿@model MVC_IA.Models.Premission
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/admin/Views/Shared/_BackLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Premission</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Premissions.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Premissions.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PValue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PValue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Url)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Url)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

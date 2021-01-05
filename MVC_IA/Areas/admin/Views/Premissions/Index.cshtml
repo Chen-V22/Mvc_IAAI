@@ -1,0 +1,52 @@
+﻿@model IEnumerable<MVC_IA.Models.Premission>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/admin/Views/Shared/_BackLayout.cshtml";
+}
+
+<h2>權限管理</h2>
+
+<p>
+    <a href="@Url.Action("Create","Premissions",new {area="admin"})" class="btn btn-primary"><span class="icon_lightbulb_alt"></span> 新增</a>
+
+</p>
+<table class="table table-striped table-advance table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Premissions.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PValue)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Url)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Premissions.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PValue)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Url)
+            </td>
+            <td>
+                @Html.ActionLink("修改", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("刪除", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+</table>
